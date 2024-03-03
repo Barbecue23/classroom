@@ -26,9 +26,7 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
-
-    Widget _buildPageBody() {
+    Widget buildPageBody() {
       switch (_selectedIndex) {
         case 0:
           return const TimeTable();
@@ -43,7 +41,7 @@ class _HomePageState extends State<HomePage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: const Text('HOME')),
+        title: const Text('HOME'),
       ),
       floatingActionButton: SizedBox(
         width: 80.0,
@@ -66,7 +64,7 @@ class _HomePageState extends State<HomePage> {
         height: 64.0,
         padding: EdgeInsets.zero,
         color: kBottomBarBackgroundColor,
-        notchMargin: 4.0,
+        // notchMargin: 4.0,
         shape: const CircularNotchedRectangle(),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -76,7 +74,9 @@ class _HomePageState extends State<HomePage> {
                 iconData: Icons.schedule,
                 text: 'ตารางเรียน/สอบ',
                 isSelected: _selectedIndex == 0,
-                onClick: () => _handleClickButton(0),
+                onClick: () {
+                  _handleClickButton(0);
+                },
               ),
             ),
             SizedBox(width: 100.0),
@@ -91,13 +91,13 @@ class _HomePageState extends State<HomePage> {
           ],
         ),
       ),
-      body: Container(child: Center(child: _buildPageBody())),
+      body: buildPageBody(),
     );
   }
 }
 
 class AppBottomMenuItem extends StatelessWidget {
-  const AppBottomMenuItem({
+  AppBottomMenuItem({
     super.key,
     required this.iconData,
     required this.text,
